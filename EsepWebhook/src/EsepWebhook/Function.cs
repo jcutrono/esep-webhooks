@@ -31,7 +31,7 @@ public class Function
         string payload = $"{{'text':'Issue Created: {body.issue.html_url}'}}";
         */
         
-        string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
+        string payload = JsonConvert.SerializeObject(new { text = $"Issue Created: {json.issue.html_url}" });
 
         var client = new HttpClient();
         var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("SLACK_URL"))
